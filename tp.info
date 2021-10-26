@@ -9,5 +9,5 @@ SourceFiles:
 -funcoes.c
 
 HeaderFiles:
--helper.h, ficheiro onde estão definidas listas e variáveis globais
--funcoes.h, ficheiro onde são declaradas as funções utilizadas
+-helper.h  //ficheiro onde estão definidas listas e variáveis globais
+-funcoes.h //ficheiro onde são declaradas as funções utilizadas
