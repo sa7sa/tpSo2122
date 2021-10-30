@@ -12,7 +12,7 @@ typedef struct avaliaCliente{
 	int prioridade;		//Prioridade do sintoma
 	int tempoEspera;		//Clientes em fila de espera
 	char espMed[20];	//Médico da especialidade
-}avDoente
+}avDoente;
 
 //Estrutura com as definições dos médicos
 typedef struct especialista{
