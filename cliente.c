@@ -2,12 +2,12 @@
 #include <stdlib.h>
 
 #include "helper.h"
-//#include "funcoes.h"
+#include "funcoes.h"
 
 int main(int argc, char **argv, char **envp){
 
 int i;
-char *sintomas;
+char sintomas[30];
 
 if(argc < 2){
 	printf("Nome do doente não definido\n");
@@ -16,7 +16,9 @@ if(argc < 2){
 }
 
 printf("Quais são os sintomas\n");
-scanf("%s", sintomas);
+scanf("%[^\n]", sintomas);
+
+printf("Eu sou o %s e tenho os seguintes sintomas:\n%s", argv[1], sintomas);
 
 return 0;
 }
