@@ -17,6 +17,10 @@ HeaderFiles:
 	*Estrutura avaliaCliente:
 		>prioridade
 		>tempoEspera
+		>especialidade //Nome do médico especialista
+
+	*Estrutura especialista:
+		>nomeMedico
 		>especialidade
 		
 -funcoes.h //ficheiro onde são declaradas as funções utilizadas
