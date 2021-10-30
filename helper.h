@@ -11,7 +11,13 @@ typedef struct cliente{
 typedef struct avaliaCliente{
 	int prioridade;		//Prioridade do sintoma
 	int tempoEspera;		//Clientes em fila de espera
-	char especialidade[20];	//Médico da especialidade
-}AvDoente
+	char espMed[20];	//Médico da especialidade
+}avDoente
+
+//Estrutura com as definições dos médicos
+typedef struct especialista{
+	char nomeMedico[20];
+	char especialidade[20];
+}medicoEsp;
 
 #endif //HELPER_H
