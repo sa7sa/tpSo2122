@@ -14,7 +14,7 @@ int main(int argc, char **argv, char **envp){
 int c_fifo_fd;
 int b_fifo_fd;
 int le_resp;
-char fifo_name[MAX_TAM];
+char sintomas[MAX_TAM];
 doente dt;
 av_doente sintDoente;
 medico_esp escolhaBalcao;
@@ -29,9 +29,9 @@ if(argc < 2){
 
 //Cria FIFO do cliente
 blc.pid_cliente = getpid();
-sprintf(fifo_name, FIFO_CLIENTE, blc.pid_cliente);
+sprintf(sintomas, FIFO_CLIENTE, blc.pid_cliente);
 
-if(mkfifo(fifo_name, S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH) == -1){
+if(mkfifo(sintomas, 0777) == -1){
 	perror("\nCriação do FIFO falhou!!!\n");
 	exit(EXIT_FAILURE);
 	}
@@ -41,18 +41,18 @@ b_fifo_fd = open(FIFO_BALCAO, S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
 
 if(b_fifo_fd == -1){
 	fprintf(stderr, "\n Falha no servidor!!!\n");
-	unlink(fifo_name);
+	unlink(sintomas);
 	exit(EXIT_FAILURE);
 	}
 
 fprintf(stderr, "\n*** Servidor aberto para Read/Write ENABLE ***\n");
 
-c_fifo_fd = open(fifo_name, O_RDWR);
+c_fifo_fd = open(sintomas, O_RDWR);
 
 if(c_fifo_fd == -1){
 	perror("\nFalha ao abrir o cliente");
 	close(c_fifo_fd);
-	unlink(fifo_name);
+	unlink(sintomas);
 	exit(EXIT_FAILURE);
 }
 
@@ -61,9 +61,10 @@ fprintf(stderr, "\nCliente aberto para Read/Write");
 memset(dt.nome, '\0', MAX_TAM);
 
 while(1){
-	printf("\nQuais são os sintomas?\n");
-	scanf("%s", &dt.sintoma);
-	//printf("Eu sou o %s e tenho os seguintes sintomas:\n%s", argv[1], &dt.sintoma);
+	printf("\nQuais são os sintomas\n");
+	scanf("%[^\n]", &
+	dt.sintoma);
+	printf("Eu sou o %s e tenho os seguintes sintomas:\n%s", argv[1], dt.sintoma);
 //Envia dados para o balcão
 	write(b_fifo_fd, &sintDoente, sizeof(sintDoente));
 

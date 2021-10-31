@@ -44,7 +44,7 @@ if(resposta == -1){
 
 fprintf(stderr, "\nConexão criada.\n");
 
-b_fifo_fd = open(FIFO_BALCAO, S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
+b_fifo_fd = open(FIFO_BALCAO, O_RDWR);
 
 if(b_fifo_fd == -1){
 	perror("\nFalha ao ligar ao servidor!!!\n");
