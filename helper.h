@@ -15,7 +15,7 @@
 
 //Estrutura onde são guardados os dados dos clientes
 typedef struct cliente{
-	char nome[MAX_TAM];				//Nome do cliente
+	char **nome;				//Nome do cliente
 	char sintoma[MAX_TAM];		//Qual o sintoma
 }doente;
 

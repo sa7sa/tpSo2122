@@ -60,7 +60,7 @@ fprintf(stderr, "\nCliente aberto para Read/Write");
 
 memset(&dt.nome, '\0', sizeof (dt));
 
-*dt.nome = argv[1];
+strcpy(dt.nome, argv[1]);
 
 printf("\nNome do doente: %s\n", dt.nome);
 
