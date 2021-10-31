@@ -58,15 +58,18 @@ if(c_fifo_fd == -1){
 
 fprintf(stderr, "\nCliente aberto para Read/Write");
 
-memset(dt.nome, '\0', MAX_TAM);
+memset(&dt.nome, '\0', sizeof (dt));
+
+*dt.nome = argv[1];
+
+printf("\nNome do doente: %s\n", dt.nome);
 
 while(1){
 	printf("\nQuais são os sintomas\n");
-	scanf("%[^\n]", &
-	dt.sintoma);
-	printf("Eu sou o %s e tenho os seguintes sintomas:\n%s", argv[1], dt.sintoma);
+	scanf("%s", dt.sintoma);
+	printf("Eu sou o %s e tenho os seguintes sintomas: %s", argv[1], dt.sintoma);
 //Envia dados para o balcão
-	write(b_fifo_fd, &sintDoente, sizeof(sintDoente));
+	write(b_fifo_fd, &dt, sizeof(dt));
 
 //Recebe resposta do balcão
 	le_resp = read(c_fifo_fd, &escolhaBalcao, sizeof(escolhaBalcao));
