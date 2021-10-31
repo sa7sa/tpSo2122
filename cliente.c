@@ -8,6 +8,7 @@
 #include <sys/types.h>
 
 #include "helper.h"
+#include "funcoes.h"
 
 int main(int argc, char **argv, char **envp){
 
@@ -24,30 +25,17 @@ if(argc < 2){
 	printf("Nome do doente não definido\n");
 	printf("./cliente <nome>\n");
 	printf("'default' por defeito\n");
-	argv = "default";
+	argv[1] = "default";
 }
 
 //Cria FIFO do cliente
-blc.pid_cliente = getpid();
-sprintf(sintomas, FIFO_CLIENTE, blc.pid_cliente);
-
-if(mkfifo(sintomas, 0777) == -1){
-	perror("\nCriação do FIFO falhou!!!\n");
-	exit(EXIT_FAILURE);
-	}
-fprintf(stderr, "\nTentativa de ligação ao balcão criada\n");
-
-b_fifo_fd = open(FIFO_BALCAO, S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
-
-if(b_fifo_fd == -1){
-	fprintf(stderr, "\n Falha no servidor!!!\n");
-	unlink(sintomas);
-	exit(EXIT_FAILURE);
-	}
+criaFIFO(sintomas);
 
 fprintf(stderr, "\n*** Servidor aberto para Read/Write ENABLE ***\n");
 
-c_fifo_fd = open(sintomas, O_RDWR);
+c_fifo_fd = openFIFO(sintomas);
+
+b_fifo_fd = openFIFO(FIFO_BALCAO);
 
 if(c_fifo_fd == -1){
 	perror("\nFalha ao abrir o cliente");

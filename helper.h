@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
@@ -7,7 +7,9 @@
 #include <limits.h>
 #include <ctype.h>
 #include <sys/stat.h>
-#include <sys/types.h>
+#include <sys/types.h>*/
+#ifndef HELPER_H
+#define HELPER_H
 
 #define MAX_TAM 50
 #define FIFO_BALCAO "fBalcao"		//Nome do pipe do balcão
@@ -15,7 +17,7 @@
 
 //Estrutura onde são guardados os dados dos clientes
 typedef struct cliente{
-	char **nome;				//Nome do cliente
+	char *nome;				//Nome do cliente
 	char sintoma[MAX_TAM];		//Qual o sintoma
 }doente;
 
@@ -33,6 +35,8 @@ typedef struct especialidade{
 }medico_esp;
 
 //Estrutura com definições cliente->balcão
-typedef struct{
+typedef struct serv_bal{
 	pid_t pid_cliente;
 }perg_balcao;
+
+#endif //HELPER_H
