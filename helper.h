@@ -14,20 +14,20 @@
 #define FIFO_CLIENTE "fCliente_%d"	//Nome do pipe de cliente
 
 //Estrutura onde são guardados os dados dos clientes
-typedef struct{
+typedef struct cliente{
 	char nome[MAX_TAM];			//Nome do cliente
 	char sintoma[MAX_TAM];		//Qual o sintoma
 }doente;
 
 //Estrutura onde são guardados os dados devolvidos pelo balcão
-typedef struct{
+typedef struct balcao{
 	int prioridade;		//Prioridade do sintoma
 	int tempoEspera;		//Clientes em fila de espera
 	char espMed[MAX_TAM];	//Médico da especialidade
 }av_doente;
 
 //Estrutura com as definições dos médicos
-typedef struct{
+typedef struct especialidade{
 	char nomeMedico[MAX_TAM];
 	char especialidade[MAX_TAM];
 }medico_esp;

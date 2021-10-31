@@ -49,7 +49,7 @@ fprintf(stderr, "\nServidor aberto para Read/Write ENABLE");
 c_fifo_fd = open(sintomas, O_RDWR);
 
 if(c_fifo_fd == -1){
-	fprintf(stderr, "\nFalha ao abrir o cliente\n");
+	perror("\nFalha ao abrir o cliente\n");
 	close(c_fifo_fd);
 	unlink(sintomas);
 	exit(EXIT_FAILURE);

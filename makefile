@@ -2,7 +2,7 @@ all:
 	gcc -g -Wall -o cliente cliente.c
 	gcc -g -Wall -o balcao balcao.c
 
-servidor:
+balcao:
 	gcc -c balcao.c
 
 cliente:

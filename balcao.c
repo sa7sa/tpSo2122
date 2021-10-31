@@ -21,7 +21,7 @@ exit(EXIT_SUCCESS);
 
 int main(int argc, char **argv, char **envp){
 
-int i, escolhaBalcao;
+int resposta;
 char sintomas;
 doente dt;
 av_doente sintDoente;
@@ -35,9 +35,9 @@ exit(EXIT_FAILURE);
 }
 fprintf(stderr, "\nSinal configurado");
 
-sintomas = mkfifo(FIFO_BALCAO, 0777);
+resposta = mkfifo(FIFO_BALCAO, 0777);
 
-if(sintomas == -1){
+if(resposta == -1){
 	perror("\n!!!Falha ao ligar ao servidor!!!\n");
 	exit(EXIT_FAILURE);
 	}
