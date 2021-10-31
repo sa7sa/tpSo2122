@@ -28,8 +28,8 @@ if(argc < 2){
 }
 
 //Cria FIFO do cliente
-sintDoente.pid_cliente = getpid();
-sprintf(sintomas, FIFO_CLIENTE, sintDoente.pid_cliente);
+blc.pid_cliente = getpid();
+sprintf(sintomas, FIFO_CLIENTE, blc.pid_cliente);
 
 if(mkfifo(sintomas, 0777 == -1)){
 	perror("\nCriação do FIFO falhou!!!\n");
@@ -41,7 +41,7 @@ b_fifo_fd = open(FIFO_BALCAO, O_RDWR);
 
 if(b_fifo_fd == -1){
 	fprintf(stderr, "\n Falha no servidor\n");
-	unlink(c_fifo_fd);
+	unlink(sintomas);
 	exit(EXIT_FAILURE);
 	}
 

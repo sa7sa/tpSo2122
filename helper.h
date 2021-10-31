@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <signal.h>
+#include <limits.h>
 #include <ctype.h>
 #include <sys/stat.h>
 #include <sys/types.h>
