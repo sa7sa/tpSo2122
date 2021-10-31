@@ -1,23 +1,41 @@
-#ifndef HELPER_H
-#define HELPER_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <signal.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+
+#include "funcoes.h"
+
+
+#define MAX_TAM 50
+#define FIFO_BALCAO "fBalcao"		//Nome do pipe do balcão
+#define FIFO_CLIENTE "fCliente"	//Nome do pipe de cliente
 
 //Estrutura onde são guardados os dados dos clientes
 typedef struct cliente{
-	char nome[20];			//Nome do cliente
-	char sintoma[];		//Qual o sintoma
+	char nome[MAX_TAM];			//Nome do cliente
+	char sintoma[MAX_TAM];		//Qual o sintoma
 }doente;
 
 //Estrutura onde são guardados os dados devolvidos pelo balcão
-typedef struct avaliaCliente{
+typedef struct avalia_cliente{
 	int prioridade;		//Prioridade do sintoma
 	int tempoEspera;		//Clientes em fila de espera
-	char espMed[20];	//Médico da especialidade
-}avDoente;
+	char espMed[MAX_TAM];	//Médico da especialidade
+}av_doente;
 
 //Estrutura com as definições dos médicos
 typedef struct especialista{
-	char nomeMedico[20];
-	char especialidade[20];
-}medicoEsp;
+	char nomeMedico[MAX_TAM];
+	char especialidade[MAX_TAM];
+}medico_esp;
 
-#endif //HELPER_H
+//Estrutura com definições cliente->balcão
+typedef struct{
+	pid_t pid_cliente;
+	struct avDoente *medExc;
+	struct especialista *repEsp;
+}perg_balcao;
