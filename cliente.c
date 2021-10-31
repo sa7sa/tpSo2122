@@ -8,7 +8,6 @@
 #include <sys/types.h>
 
 #include "helper.h"
-//#include "funcoes.h"
 
 int main(int argc, char **argv, char **envp){
 
@@ -20,13 +19,13 @@ av_doente sintDoente;
 medico_esp escolhaBalcao;
 perg_balcao blc;
 
-/*if(argc < 2){
+if(argc < 2){
 	printf("Nome do doente não definido\n");
 	printf("./cliente <nome>\n");
 	printf("'default' por defeito\n");
 	argv = "default";
 }
-*/
+
 //Cria FIFO do cliente
 blc.pid_cliente = getpid();
 sprintf(sintomas, FIFO_CLIENTE, blc.pid_cliente);

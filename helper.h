@@ -35,6 +35,4 @@ typedef struct{
 //Estrutura com definições cliente->balcão
 typedef struct{
 	pid_t pid_cliente;
-	struct avDoente *medExc;
-	struct especialista *repEsp;
 }perg_balcao;

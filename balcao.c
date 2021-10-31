@@ -8,7 +8,6 @@
 #include <signal.h>
 
 #include "helper.h"
-#include "funcoes.h"
 
 int b_fifo_fd, c_fifo_fd;
 
