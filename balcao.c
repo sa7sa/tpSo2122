@@ -22,7 +22,7 @@ exit(EXIT_SUCCESS);
 int main(int argc, char **argv, char **envp){
 
 int resposta;
-char sintomas;
+char sintomas[MAX_TAM];
 doente dt;
 av_doente sintDoente;
 medico_esp respBalcao;
@@ -35,7 +35,7 @@ exit(EXIT_FAILURE);
 }
 fprintf(stderr, "\nSinal configurado");
 
-resposta = mkfifo(FIFO_BALCAO, 0777);
+resposta = mkfifo(FIFO_BALCAO, S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
 
 if(resposta == -1){
 	perror("\n!!!Falha ao ligar ao servidor!!!\n");
@@ -44,7 +44,7 @@ if(resposta == -1){
 
 fprintf(stderr, "\nConexão criada.\n");
 
-b_fifo_fd = open(FIFO_BALCAO, O_RDWR);
+b_fifo_fd = open(FIFO_BALCAO, S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
 
 if(b_fifo_fd == -1){
 	perror("\nFalha ao ligar ao servidor!!!\n");
@@ -54,8 +54,8 @@ if(b_fifo_fd == -1){
 fprintf(stderr, "\n Ligação criada com o cliente\n");
 
 while(1){
-	sintomas = read(b_fifo_fd, &dt, sizeof(dt));
-	if(sintomas < sizeof(dt)){
+	resposta = read(b_fifo_fd, &dt, sizeof(dt));
+	if(resposta < sizeof(dt)){
 		fprintf(stderr, "\nInformação incompleta\n");
 		continue;
 	}
