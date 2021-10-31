@@ -34,7 +34,7 @@ if(mkfifo(sintomas, 0777 == -1)){
 	perror("\nCriação do FIFO falhou!!!\n");
 	exit(EXIT_FAILURE);
 	}
-fprintf(stderr, "\nLigação ao balcão criada\n");
+fprintf(stderr, "\nTentativa de ligação ao balcão criada\n");
 
 b_fifo_fd = open(FIFO_BALCAO, O_RDWR);
 
@@ -69,7 +69,7 @@ while(1){
 //Recebe resposta do balcão
 	le_resp = read(c_fifo_fd, &escolhaBalcao, sizeof(escolhaBalcao));
 if(le_resp == sizeof(escolhaBalcao))
-	printf("Especialidade %s\n", &escolhaBalcao.especialidade);
+	printf("Especialidade %s\n", escolhaBalcao.especialidade);
 else
 	printf("Não foi possivel obter resposta\n");
 }
