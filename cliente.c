@@ -23,18 +23,19 @@ perg_balcao blc;
 if(argc < 2){
 	printf("Nome do doente não definido\n");
 	printf("./cliente <nome>\n");
-	return 0;
+	printf("'default' por defeito\n");
+	argv = "default";
 }
 
 //Cria FIFO do cliente
 blc.pid_cliente = getpid();
-sprintf(c_fifo_fd, FIFO_BALCAO, blc.pid_cliente);
+sprintf(sintomas, FIFO_BALCAO, blc.pid_cliente);
 
-if(mkfifo(c_fifo_fd, 0777 == -1)){
+if(mkfifo(sintomas, 0777 == -1)){
 	perror("\nCriação do FIFO falho!!!\n");
 	exit(EXIT_FAILURE);
 	}
-fprintf(stderr, "\nServidor ABERTO, Write ENABLE");
+fprintf(stderr, "\nServidor FECHADO, Write ENABLE");
 
 b_fifo_fd = open(FIFO_BALCAO, O_RDWR);
 
