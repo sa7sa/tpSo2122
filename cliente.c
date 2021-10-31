@@ -32,7 +32,7 @@ blc.pid_cliente = getpid();
 sprintf(sintomas, FIFO_BALCAO, blc.pid_cliente);
 
 if(mkfifo(sintomas, 0777 == -1)){
-	perror("\nCriação do FIFO falho!!!\n");
+	perror("\nCriação do FIFO falhou!!!\n");
 	exit(EXIT_FAILURE);
 	}
 fprintf(stderr, "\nServidor FECHADO, Write ENABLE");
