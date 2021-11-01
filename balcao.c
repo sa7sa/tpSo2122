@@ -24,9 +24,6 @@ int main(int argc, char **argv, char **envp){
 int resposta;
 char sintomas[MAX_TAM];
 doente dt;
-av_doente sintDoente;
-medico_esp respBalcao;
-perg_balcao blc;
 
 printf("Balcão de serviço\n");
 if(signal(SIGINT, sig) == SIG_ERR){
