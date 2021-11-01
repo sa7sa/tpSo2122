@@ -15,8 +15,7 @@ int main(int argc, char **argv, char **envp){
     int c_fifo_fd;
     int b_fifo_fd;
     int le_resp;
-    char sintomas[MAX_TAM];
-    char name_f;
+    char *f_resp = FIFO_CLIENTE;
     doente dt;
     medico_esp escolhaBalcao;
     perg_balcao blc;
@@ -28,20 +27,18 @@ int main(int argc, char **argv, char **envp){
         argv[1] = "default";
     }
 
-//Cria FIFO do cliente
-
-    criaFIFO(sintomas, name_f);
+    criaFIFO(FIFO_CLIENTE);//Cria FIFO do cliente->balcao
 
     fprintf(stderr, "\n*** Servidor aberto para Read/Write ENABLE ***\n");
 
-    c_fifo_fd = openFIFO(name_f);
+    c_fifo_fd = openFIFO(FIFO_CLIENTE);
 
-    //b_fifo_fd = openFIFO((char*) FIFO_BALCAO);
+    b_fifo_fd = openFIFO(FIFO_BALCAO);
 
     if(c_fifo_fd == -1){
         perror("\nFalha ao abrir o cliente");
         close(c_fifo_fd);
-        unlink(sintomas);
+        unlink(f_resp);
         exit(EXIT_FAILURE);
     }
 

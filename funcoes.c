@@ -10,12 +10,17 @@
 #include "helper.h"
 #include "funcoes.h"
 
-int criaFIFO(char *fifoName, char *fifo_n){
+int criaFIFO(char *fifoName){
     int c_fifo;
+    char fC[15];
     perg_balcao blc;
 
-    blc.pid_cliente = getpid();
-    sprintf(fifoName, FIFO_CLIENTE, blc.pid_cliente);
+    strcpy(fC, "fCliente_%d");
+
+    if (strcmp(fifoName, fC) == 0) {
+        blc.pid_cliente = getpid();
+        sprintf(fifoName, "fCliente_%d", blc.pid_cliente);
+    }
 
     c_fifo = mkfifo(fifoName, 0777);
     if( c_fifo == -1){
@@ -25,7 +30,7 @@ int criaFIFO(char *fifoName, char *fifo_n){
 
     fprintf(stderr, "\nLigação ao balcão criada\n");
 
-    strcpy(fifo_n, fifoName);
+    blc.f_cliente = fifoName;
 
     return c_fifo;
 }

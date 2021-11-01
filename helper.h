@@ -35,4 +35,5 @@ typedef struct especialidade{
 //Estrutura com definições cliente->balcão
 typedef struct serv_bal{
 	pid_t pid_cliente;
+	char *f_cliente;
 }perg_balcao;

@@ -1,6 +1,6 @@
 all:
 	gcc -g -Wall -o cliente cliente.c funcoes.c
-	gcc -g -Wall -o balcao balcao.c
+	gcc -g -Wall -o balcao balcao.c funcoes.c
 	
 balcao:
 	gcc -c balcao.c

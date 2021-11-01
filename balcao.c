@@ -8,6 +8,7 @@
 #include <signal.h>
 
 #include "helper.h"
+#include "funcoes.h"
 
 int b_fifo_fd, c_fifo_fd;
 
@@ -22,7 +23,6 @@ exit(EXIT_SUCCESS);
 int main(int argc, char **argv, char **envp){
 
 int resposta;
-char sintomas[MAX_TAM];
 doente dt;
 
 printf("Balcão de serviço\n");
@@ -30,9 +30,9 @@ if(signal(SIGINT, sig) == SIG_ERR){
 	perror("\nImpossivel configurar sinal!!!\n");
 exit(EXIT_FAILURE);
 }
-fprintf(stderr, "\nSinal configurado");
+fprintf(stderr, "\nSinal configurado\n");
 
-resposta = mkfifo(FIFO_BALCAO, S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
+resposta = criaFIFO(FIFO_BALCAO);
 
 if(resposta == -1){
 	perror("\n!!!Falha ao ligar ao servidor!!!\n");
@@ -41,7 +41,7 @@ if(resposta == -1){
 
 fprintf(stderr, "\nConexão criada.\n");
 
-b_fifo_fd = open(FIFO_BALCAO, O_RDWR);
+b_fifo_fd = openFIFO(FIFO_BALCAO);
 
 if(b_fifo_fd == -1){
 	perror("\nFalha ao ligar ao servidor!!!\n");
