@@ -27,7 +27,7 @@ int main(int argc, char **argv, char **envp){
         argv[1] = "default";
     }
 
-    criaFIFO(FIFO_CLIENTE, blc);//Cria FIFO do cliente->balcao
+    criaFIFO(f_resp, blc);//Cria FIFO do cliente->balcao
 
     fprintf(stderr, "\n*** Servidor aberto para Read/Write ENABLE ***\n");
 

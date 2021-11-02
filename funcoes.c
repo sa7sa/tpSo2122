@@ -12,14 +12,11 @@
 
 int criaFIFO(char *fifoName, perg_balcao blc){
     int c_fifo;
-    char fC[15];
     //perg_balcao blc;
 
-    strcpy(fC, "fCliente_%d");
-
-    if (strcmp(fifoName, fC) == 0) {
+    if (strcmp(fifoName, FIFO_CLIENTE) == 0) {
         blc.pid_cliente = getpid();
-        sprintf(fifoName, "fCliente_%d", blc.pid_cliente);
+        sprintf(fifoName, FIFO_CLIENTE, blc.pid_cliente);
     }
 
     c_fifo = mkfifo(fifoName, 0777);
@@ -29,8 +26,6 @@ int criaFIFO(char *fifoName, perg_balcao blc){
     }
 
     fprintf(stderr, "\nLigação ao balcão criada\n");
-
-    blc.f_cliente = fifoName;
 
     return c_fifo;
 }
