@@ -10,10 +10,10 @@
 #include "helper.h"
 #include "funcoes.h"
 
-int criaFIFO(char *fifoName){
+int criaFIFO(char *fifoName, perg_balcao blc){
     int c_fifo;
     char fC[15];
-    perg_balcao blc;
+    //perg_balcao blc;
 
     strcpy(fC, "fCliente_%d");
 

@@ -24,6 +24,7 @@ int main(int argc, char **argv, char **envp){
 
 int resposta;
 doente dt;
+perg_balcao bc;
 
 printf("Balcão de serviço\n");
 if(signal(SIGINT, sig) == SIG_ERR){
@@ -32,7 +33,7 @@ exit(EXIT_FAILURE);
 }
 fprintf(stderr, "\nSinal configurado\n");
 
-resposta = criaFIFO(FIFO_BALCAO);
+resposta = criaFIFO(FIFO_BALCAO, bc);
 
 if(resposta == -1){
 	perror("\n!!!Falha ao ligar ao servidor!!!\n");
