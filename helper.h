@@ -11,7 +11,7 @@
 
 #define MAX_TAM 50
 #define FIFO_BALCAO "fBalcao"		//Nome do pipe do balcão
-#define FIFO_CLIENTE "fCliente_%d"	//Nome do pipe de cliente
+#define FIFO_CLIENTE "fClient_%d"	//Nome do pipe de cliente
 
 //Estrutura onde são guardados os dados dos clientes
 typedef struct cliente{

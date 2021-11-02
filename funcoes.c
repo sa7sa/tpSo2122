@@ -15,19 +15,22 @@ int criaFIFO(char *fifoName){
     char fC[15];
     perg_balcao blc;
 
-    strcpy(fC, FIFO_CLIENTE);
+    strcpy(fC, fifoName);
 
     if (strcmp(fifoName, fC) == 0) {
         blc.pid_cliente = getpid();
-        sprintf(&fifoName, FIFO_CLIENTE, blc.pid_cliente);
-    }
-    c_fifo = mkfifo(fifoName, O_RDWR);
+        sprintf(fC, FIFO_CLIENTE, blc.pid_cliente);
+	   c_fifo = mkfifo(fC, O_RDWR);
+	}
+	
     if( c_fifo == -1){
         perror("\nCriação do FIFO falhou!!!\n");
         exit(EXIT_FAILURE);
-    }
+    	}
 
-    fprintf(stderr, "\nLigação ao %s criada\n", fifoName);
+    fprintf(stderr, "\nLigação ao %s criada\n", fC);
+
+	fifoName = fC;
 
     return c_fifo;
 }
