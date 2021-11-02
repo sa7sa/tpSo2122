@@ -15,14 +15,13 @@ int criaFIFO(char *fifoName){
     char fC[15];
     perg_balcao blc;
 
-    strcpy(fC, "fCliente_%d");
+    strcpy(fC, FIFO_CLIENTE);
 
     if (strcmp(fifoName, fC) == 0) {
         blc.pid_cliente = getpid();
-        sprintf(fifoName, "fCliente_%d", blc.pid_cliente);
+        sprintf(&fifoName, FIFO_CLIENTE, blc.pid_cliente);
     }
-
-    c_fifo = mkfifo(fifoName, 0777);
+    c_fifo = mkfifo(fifoName, O_RDWR);
     if( c_fifo == -1){
         perror("\nCriação do FIFO falhou!!!\n");
         exit(EXIT_FAILURE);
