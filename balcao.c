@@ -33,7 +33,7 @@ exit(EXIT_FAILURE);
 }
 fprintf(stderr, "\nSinal configurado\n");
 
-resposta = criaFIFO(FIFO_BALCAO, bc);
+resposta = criaFIFO(FIFO_BALCAO);
 
 if(resposta == -1){
 	perror("\n!!!Falha ao ligar ao servidor!!!\n");

@@ -27,13 +27,15 @@ int main(int argc, char **argv, char **envp){
         argv[1] = "default";
     }
 
-    criaFIFO(f_resp, blc);//Cria FIFO do cliente->balcao
+    criaFIFO(FIFO_CLIENTE);//Cria FIFO do cliente->balcao
 
     fprintf(stderr, "\n*** Servidor aberto para Read/Write ENABLE ***\n");
 
     c_fifo_fd = openFIFO(FIFO_CLIENTE);
 
     b_fifo_fd = openFIFO(FIFO_BALCAO);
+
+	printf(":(\n");
 
     if(c_fifo_fd == -1){
         perror("\nFalha ao abrir o cliente");
@@ -44,14 +46,14 @@ int main(int argc, char **argv, char **envp){
 
     fprintf(stderr, "\nCliente aberto para Read/Write");
 
-    memset(&dt.nome, '\0', sizeof (dt));
+    //memset(dt.nome, '\0', sizeof (dt));
 
-    strcpy(dt.nome, argv[1]);
+    dt.nome = argv[1];
 
     printf("\nNome do doente: %s\n", dt.nome);
 
-    printf("\nQuais são os sintomas\n");
-    scanf("%s", dt.sintoma);
+    printf("\nQuais são os sintomas?\n");
+    scanf("%s", &dt.sintoma);
     printf("Eu sou o %s e tenho os seguintes sintomas: %s", argv[1], dt.sintoma);
 //Envia dados para o balcão
     write(b_fifo_fd, &dt, sizeof(dt));

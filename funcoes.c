@@ -10,13 +10,16 @@
 #include "helper.h"
 #include "funcoes.h"
 
-int criaFIFO(char *fifoName, perg_balcao blc){
+int criaFIFO(char *fifoName){
     int c_fifo;
-    //perg_balcao blc;
+    char fC[15];
+    perg_balcao blc;
 
-    if (strcmp(fifoName, FIFO_CLIENTE) == 0) {
+    strcpy(fC, "fCliente_%d");
+
+    if (strcmp(fifoName, fC) == 0) {
         blc.pid_cliente = getpid();
-        sprintf(fifoName, FIFO_CLIENTE, blc.pid_cliente);
+        sprintf(fifoName, "fCliente_%d", blc.pid_cliente);
     }
 
     c_fifo = mkfifo(fifoName, 0777);
@@ -25,7 +28,7 @@ int criaFIFO(char *fifoName, perg_balcao blc){
         exit(EXIT_FAILURE);
     }
 
-    fprintf(stderr, "\nLigação ao balcão criada\n");
+    fprintf(stderr, "\nLigação ao %s criada\n", fifoName);
 
     return c_fifo;
 }
@@ -33,7 +36,7 @@ int criaFIFO(char *fifoName, perg_balcao blc){
 int openFIFO(char *f_name){
     int b_fifo;
 
-    b_fifo = open(f_name, S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
+    b_fifo = open(f_name, O_RDWR);
 
     if(b_fifo == -1){
         fprintf(stderr, "\n Falha no servidor!!!\n");
