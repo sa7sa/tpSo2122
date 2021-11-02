@@ -16,7 +16,7 @@
 //Estrutura onde são guardados os dados dos clientes
 typedef struct cliente{
 	char *nome;				//Nome do cliente
-	char *sintoma;				//Qual o sintoma
+	char sintoma[MAX_TAM];				//Qual o sintoma
 }doente;
 
 //Estrutura onde são guardados os dados devolvidos pelo balcão
