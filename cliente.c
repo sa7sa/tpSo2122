@@ -31,7 +31,7 @@ int main(int argc, char **argv, char **envp){
 
     fprintf(stderr, "\n*** Servidor aberto para Read/Write ENABLE ***\n");
 
-    c_fifo_fd = openFIFO(FIFO_CLIENTE);
+    c_fifo_fd = openFIFO(f_resp);
 
     b_fifo_fd = openFIFO(FIFO_BALCAO);
 
