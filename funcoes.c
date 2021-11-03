@@ -17,11 +17,12 @@ int criaFIFO(char *fifoName){
 
     strcpy(fC, fifoName);
 
-    if (strcmp(fifoName, fC) == 0) {
+    if (strcmp(fC, "fClient_%d") == 0) {
         blc.pid_cliente = getpid();
         sprintf(fC, FIFO_CLIENTE, blc.pid_cliente);
-	   c_fifo = mkfifo(fC, O_RDWR);
-	}
+        }
+    
+    c_fifo = mkfifo(fC, O_RDWR);
 	
     if( c_fifo == -1){
         perror("\nCriação do FIFO falhou!!!\n");
